@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nhà Thuốc DNL</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Thuốc", "Index", "Thuoc")</li>
+
+
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            
+                            <li>@Html.ActionLink("Loại Thuốc", "Index", "LoaiThuoc")</li>
+                            <li>@Html.ActionLink("Khách hàng", "Index", "KhachHang")</li>
+                            <li>@Html.ActionLink("Quản trị", "Index", "Admin")</li>
+
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr /> 
+            <p>&copy; @DateTime.Now.Year - Nhà Thuốc DNL</p>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>

@@ -1,0 +1,53 @@
+﻿@model List<QuanLyNhaThuoc.Models.CartItem>
+
+
+<h2>Giỏ hàng</h2>
+@if (Model == null)
+{
+    <p class="text text-info" Chưa có sản phẩm nào trong giỏ hàng></p>
+}
+else
+{
+    <div class="row"></div>
+    <table class="table table-striped">
+        <tr>
+            <th>Mã thuốc</th>
+            <th>Tên thuốc</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaThuoc</td>
+                <td>@item.TenThuoc</td>
+                <td>
+                    <form action="@Url.Action("Update", "GioHang")" method="get">
+                        <input type="number" value="@item.SoLuong" min="1" name="txtSoLuong" id="txtSoLuong" />
+                        <button type="submit" class="btn btn-success">Cập nhật</button>
+                        <input type="hidden" name="maThuoc" value="@item.MaThuoc" />
+                    </form>
+
+                </td>
+                <td>@item.DonGia</td>
+                <td>@item.ThanhTien</td>
+                <td>
+                    <a href="@Url.Action("Delete", "GioHang", new { maThuoc = item.MaThuoc})" class="btn btn-danger" onclick="return confirm('Bạn muốn xóa mặt hàng này?')"> Xóa</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <th></th>
+            <th>Tổng số lượng</th>
+            <th>@Model.Sum(m => m.SoLuong)</th>
+            <th>Tổng tiền</th>
+            <th>@Model.Sum(m => m.ThanhTien).ToString("#,###") đồng</th>
+
+        </tr>
+
+    </table>
+}
+
+

@@ -1,0 +1,17 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+    <div>
+        <h3>@Html.DisplayNameFor(m=>m.Name): @Html.DisplayFor(m=>m.Name)</h3>
+        <ul>
+            @if (ViewBag.UserCount > 0)
+            {
+                foreach (var user in ViewBag.Users)
+                {
+                    <li>@user.UserName</li>
+                }
+            }
+        </ul>
+    </div>
+<p>
+    @Html.ActionLink("Back","Index")
+</p>
+

@@ -1,0 +1,144 @@
+﻿@model PagedList.IPagedList<QuanLyNhaThuoc.Models.Thuoc>
+@using QuanLyNhaThuoc.Models
+@using PagedList.Mvc
+<link rel="stylesheet" href="~/Content/PagedList.css" />
+@using (Html.BeginForm())
+{
+    <p>
+
+    </p>
+    <div class="form-group form-inline">
+        Tìm kiếm sản phẩm @Html.TextBox("SearchString", "", new { @class = "form-control" })
+        <input type="submit" class="btn btn-primary" value="Tìm kiếm" />
+
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Loại Thuốc
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">Gây mê</a></li>
+            <li><a href="#">Trị đau nhức</a></li>
+            <li><a href="#">Chống dị ứng và phản vệ</a></li>
+            <li><a href="#">Chống giải độc và các chất độc khác</a></li>
+            <li><a href="#">Chống co giật</a></li>
+            <li><a href="#">Chống bênh truyền nhiễm</a></li>
+            <li><a href="#">Tim mạch</a></li>
+            <li><a href="#">Da liễu</a></li>
+            <li><a href="#">Sát trùng</a></li>
+            <li><a href="#">Dạ dày</a></li>
+        </ul>
+    </div>
+}
+
+
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @Html.Image("../" + item.HinhThuoc, "", "100", "150")
+                    </div>
+                    <div class="panel-body">
+                        <h4 class="panel-title">
+                            @Html.DisplayFor(m => item.TenThuoc)
+                        </h4>
+
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col">
+                                <p class="btn btn-info btn-block">
+                                    @string.Format("{0:0,### đồng}", item.DonGia)
+                                </p>
+                            </div>
+                            <div class="col">
+                                <a href="@Url.Action("Details", "Thuoc", new { id = item.MaThuoc })" class="btn btn-success btn-block">
+                                    Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page,
+        curentFilter = ViewBag.CurentFilter
+    }))
+</div>
+Viết cho BTL - Lập Trình Web
+
+
+
+
+@*@model IEnumerable<QuanLyNhaThuoc.Models.Thuoc>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenThuoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonViTinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HinhThuoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiThuoc.TenLoaiThuoc)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonViTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HinhThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiThuoc.TenLoaiThuoc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.MaThuoc }) |
+                @Html.ActionLink("Details", "Details", new { id=item.MaThuoc }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.MaThuoc })
+            </td>
+        </tr>
+    }
+
+    </table>*@

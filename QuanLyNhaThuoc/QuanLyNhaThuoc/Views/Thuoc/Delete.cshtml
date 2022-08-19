@@ -1,0 +1,65 @@
+﻿@model QuanLyNhaThuoc.Models.Thuoc
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Thuoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenThuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenThuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonViTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonViTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhThuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhThuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiThuoc.TenLoaiThuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiThuoc.TenLoaiThuoc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

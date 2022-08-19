@@ -1,0 +1,62 @@
+﻿@model QuanLyNhaThuoc.Models.Thuoc
+@using QuanLyNhaThuoc.Models
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Chi Tiết Thuốc</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenThuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenThuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonViTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonViTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,### đồng}", Model.DonGia)
+        </dd>
+        <dt>
+            Tên Loại Thuốc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiThuoc.TenLoaiThuoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhThuoc)
+        </dt>
+
+        <dd>
+            @Html.Image("../../" + Model.HinhThuoc, "", "100", "120")
+        </dd>
+        <dt></dt>
+        <dd>
+            <br />
+            <a class="btn btn-info" href="@Url.Action("AddToCart", "GioHang", new{ maThuoc = Model.MaThuoc })"><span class="glyphicon glyphicon-shopping-cart"></span> Thêm Vào Giỏ Hàng</a>
+            <a class="btn btn-info" href="@Url.Action("Index","Thuoc")">Trở Lại</a>
+        </dd>
+    </dl>
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaThuoc }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+*@

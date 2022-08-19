@@ -1,0 +1,33 @@
+﻿@model IEnumerable<QuanLyNhaThuoc.Models.LoaiThuoc>
+
+@{
+    ViewBag.Title = "Loại Thuốc";
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenLoaiThuoc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLoaiThuoc)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.MaLoaiThuoc }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.MaLoaiThuoc }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.MaLoaiThuoc })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Thêm Loại Thuốc", "Create")
+</p>

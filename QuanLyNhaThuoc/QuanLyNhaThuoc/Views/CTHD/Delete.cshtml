@@ -1,0 +1,56 @@
+﻿@model QuanLyNhaThuoc.Models.CTHD
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CTHD</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGiaBan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGiaBan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoaDon.MaKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDon.MaKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thuoc.TenThuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thuoc.TenThuoc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
